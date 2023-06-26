@@ -18,10 +18,27 @@
                 <a href="/?category={{$blog->category->slug}}"><span class="badge bg-dark text-capitalize">{{$blog->category->name}}</span></a>
               </div>
           <h3 class="card-title">{{$blog->title}}</h3>
-          <p class="fs-6 text-dark pt-2">
-            <a href="/?username={{$blog->author->username}}" class="text-decoration-none text-dark fw-bold text-capitalize">{{$blog->author->name}}</a>
-            <span> - {{$blog->created_at->diffForHumans()}}</span>
-          </p>
+
+          <div class="d-flex pt-2 justify-content-between">
+            <div>
+                <p class="fs-6 text-dark">
+                    <a href="/?username={{$blog->author->username}}" class="text-decoration-none text-dark fw-bold text-capitalize">{{$blog->author->name}}</a>
+                    <span> - {{$blog->created_at->diffForHumans()}}</span>
+                </p>
+            </div>
+            <div class="">
+                <form action="/blogs/{{$blog->slug}}/subscription" method="post">
+                    @csrf
+                    @auth
+                        @if (auth()->user()->isSubscribed($blog))
+                            <button class="btn btn-outline-dark btn-sm">Unsubscribe</button>
+                        @else
+                            <button class="btn btn-dark btn-sm">Subscribe</button>
+                        @endif
+                    @endauth
+                </form>
+            </div>
+          </div>
 
             <p class="lh-md mt-3">
               {{$blog->body}}
@@ -41,7 +58,7 @@
     </section>
 
     @if($blog->comments->count())
-        <x-comments :comments='$blog->comments' />
+        <x-comments :comments='$blog->comments()->latest()->paginate(3)' />
     @endif
 
     <x-blogs-you-may-like :randomBlogs="$randomBlogs" />
