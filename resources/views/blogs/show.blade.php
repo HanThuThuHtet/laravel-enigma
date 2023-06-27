@@ -3,7 +3,7 @@
         <div class="row">
           <div class="col-md-6 mx-auto text-start">
             <img
-              src="/img/courtesyofversace.jpg"
+              src='{{asset("storage/$blog->thumbnail")}}'
               class="card-img-top"
               alt="..."
             />
@@ -41,7 +41,7 @@
           </div>
 
             <p class="lh-md mt-3">
-              {{$blog->body}}
+              {!! $blog->body !!}
             </p>
           </div>
         </div>

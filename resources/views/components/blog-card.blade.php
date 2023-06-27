@@ -3,13 +3,13 @@
 
     <div class="card border-0">
         <img
-          src="/img/courtesyofversace.jpg"
+          src='{{asset("storage/$blog->thumbnail")}}'
           class="card-img-top object-fit-cover"
           height="200px"
           alt="..."
         />
 
-        <div class="card-body text-start">
+        <div class="card-body px-0 text-start">
             <div class="tags mb-3 mt-2">
                 <a href="/?category={{$blog->category->slug}}"><span class="badge bg-dark text-capitalize">{{$blog->category->name}}</span></a>
               </div>
