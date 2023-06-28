@@ -43,7 +43,11 @@ class AuthController extends Controller
         ]);
 
         if(auth()->attempt($user)){
-            return redirect('/')->with('success','Welcome Back');
+            if(auth()->user()->is_admin){
+                return redirect('/admin/blogs')->with('success','Welcome Back');
+            }else{
+                return redirect('/')->with('success','Welcome Back');
+            }
         }else{
             return redirect()->back()->withErrors([
                 'email' => 'email or password is wrong'
