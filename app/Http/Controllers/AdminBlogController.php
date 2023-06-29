@@ -40,6 +40,15 @@ class AdminBlogController extends Controller
     }
 
 
+    public function edit(Blog $blog)
+    {
+        return view('admin.blogs.edit',[
+            "blog" => $blog,
+            "categories" => Category::all()
+        ]);
+    }
+
+
     public function destroy(Blog $blog)
     {
         $blog->delete();

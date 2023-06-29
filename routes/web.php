@@ -50,5 +50,8 @@ Route::post('/admin/blogs/store',[AdminBlogController::class,'store'])->middlewa
 //delete blog
 Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy'])->middleware('admin');
 
+//edit blog
+Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware('admin');
+
 //dashboard
 Route::get('/admin/blogs',[AdminBlogController::class,'index'])->middleware('admin');
