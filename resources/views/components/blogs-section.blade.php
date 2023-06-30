@@ -42,12 +42,13 @@
         </button>
       </div>
     </form>
+
     <div class="row">
 
             @forelse ($blogs as $blog)
                 <div class="col-md-4 mb-4">
 
-                        <x-blog-card :blog="$blog"/>
+                    <x-blog-card :blog="$blog"/>
 
                 </div>
             @empty

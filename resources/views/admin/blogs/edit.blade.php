@@ -4,9 +4,10 @@
     <x-card-wrapper>
         <form
             enctype="multipart/form-data"
-            action="/admin/blogs/store"
+            action="/admin/blogs/{{$blog->slug}}/update"
             method="post" >
             @csrf
+            @method('patch')
             <x-form.input name="title" value="{{$blog->title}}" />
             <x-form.input name="slug" value="{{$blog->slug}}"  />
             <x-form.input name="intro" value="{{$blog->intro}}"  />
@@ -29,7 +30,7 @@
             </x-form.input-wrapper>
 
             <div class="d-flex justify-content-start">
-                <button type="submit" class="btn btn-dark ">Create Blog</button>
+                <button type="submit" class="btn btn-dark ">Update Blog</button>
             </div>
 
         </form>

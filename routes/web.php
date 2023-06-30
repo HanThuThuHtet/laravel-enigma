@@ -41,17 +41,24 @@ Route::post('/blogs/{blog:slug}/subscription',[BlogController::class,'subscripti
 
 
 //Admin Managment
-//create blog
-Route::get('/admin/blogs/create',[AdminBlogController::class,'create'])->middleware('admin');
+Route::middleware('can:admin')->group(function(){
 
-//store blog
-Route::post('/admin/blogs/store',[AdminBlogController::class,'store'])->middleware('admin');
+    //create blog
+    Route::get('/admin/blogs/create',[AdminBlogController::class,'create']);
 
-//delete blog
-Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy'])->middleware('admin');
+    //store blog
+    Route::post('/admin/blogs/store',[AdminBlogController::class,'store']);
 
-//edit blog
-Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware('admin');
+    //delete blog
+    Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy']);
 
-//dashboard
-Route::get('/admin/blogs',[AdminBlogController::class,'index'])->middleware('admin');
+    //edit blog
+    Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit']);
+
+    //update blog
+    Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update']);
+
+    //dashboard
+    Route::get('/admin/blogs',[AdminBlogController::class,'index']);
+
+});

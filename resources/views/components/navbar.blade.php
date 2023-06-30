@@ -16,6 +16,9 @@
         @endguest
 
         @auth
+            @can('admin')
+                <a href="/admin/blogs" class="nav-link text-dark">Dashboard</a>
+            @endcan
             <div class="dropdown">
                 <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{auth()->user()->avatar}}" width="30" height="30" class="rounded-circle" alt="">
